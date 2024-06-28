@@ -1,28 +1,30 @@
 {
-	"name": "react-sample",
-	"private": true,
-	"version": "0.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "vite",
-		"build": "tsc -b && vite build",
-		"preview": "vite preview",
-		"lint:code": "biome lint ./",
-		"lint:style": "biome format ./",
-		"fix:style": "biome format --write ./",
-		"fix:code": "biome lint --write ./"
-	},
-	"dependencies": {
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.8.3",
-		"@types/react": "^18.3.3",
-		"@types/react-dom": "^18.3.0",
-		"@vitejs/plugin-react-swc": "^3.5.0",
-		"typescript": "^5.2.2",
-		"vite": "^5.3.1"
-	},
-	"packageManager": "pnpm@8.14.1+sha1.d039b38e0b20ad012ed548e44267b8d4c88b447a"
+  "name": "react.dev",
+  "version": "0.0.0",
+  "main": "/src/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0"
+  },
+  "devDependencies": {},
+  "packageManager": "pnpm@8.14.1+sha1.d039b38e0b20ad012ed548e44267b8d4c88b447a",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
