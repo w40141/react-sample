@@ -1,6 +1,18 @@
 import React, { useState } from "react";
+// import type React from "react";
+// import { useState } from "react";import { useState } from "react";
 
-const Square = ({ value, onSquareClick }) => {
+type squareType = string;
+
+type SquareProps = {
+	value: string | null;
+	onSquareClick: () => void;
+};
+
+const Square: React.FC<SquareProps> = ({
+	value,
+	onSquareClick,
+}): React.JSX.Element => {
 	return (
 		<button type="button" className="square" onClick={onSquareClick}>
 			{value}
@@ -8,9 +20,17 @@ const Square = ({ value, onSquareClick }) => {
 	);
 };
 
-const Message = ({ squares, xIsNext }) => {
+type MessageProps = {
+	squares: squareType[];
+	xIsNext: boolean;
+};
+
+const Message: React.FC<MessageProps> = ({
+	squares,
+	xIsNext,
+}): React.JSX.Element => {
 	const winner = judgeWinner(squares);
-	let status;
+	let status: string;
 	if (winner) {
 		status = `Winner: ${winner}`;
 	} else {
@@ -19,8 +39,18 @@ const Message = ({ squares, xIsNext }) => {
 	return <div>{status}</div>;
 };
 
-const Board = ({ xIsNext, squares, onPlay }) => {
-	const handleClick = (i) => {
+type BoardProps = {
+	xIsNext: boolean;
+	squares: squareType[];
+	onPlay: (squares: squareType[]) => void;
+};
+
+const Board: React.FC<BoardProps> = ({
+	xIsNext,
+	squares,
+	onPlay,
+}): React.JSX.Element => {
+	const handleClick = (i: number) => {
 		if (squares[i] || judgeWinner(squares)) {
 			return;
 		}
@@ -56,18 +86,18 @@ const Board = ({ xIsNext, squares, onPlay }) => {
 };
 
 const Game = () => {
-	const [history, setHistory] = useState([Array(9).fill(null)]);
+	const [history, setHistory] = useState([Array(9).fill("")]);
 	const [currentMove, setCurrentMove] = useState(0);
 	const xIsNext = currentMove % 2 === 0;
 	const currentSquares = history[currentMove];
 
-	const handlePlay = (nextSquares) => {
+	const handlePlay = (nextSquares: string[]) => {
 		const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
 		setHistory(nextHistory);
 		setCurrentMove(nextHistory.length - 1);
 	};
 
-	const jumpTo = (nextMove) => {
+	const jumpTo = (nextMove: number) => {
 		setCurrentMove(nextMove);
 	};
 
@@ -94,7 +124,7 @@ const Game = () => {
 	);
 };
 
-function judgeWinner(squares) {
+function judgeWinner(squares: Array<string | null>) {
 	const lines = [
 		[0, 1, 2],
 		[3, 4, 5],
