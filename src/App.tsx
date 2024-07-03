@@ -2,22 +2,6 @@ import { useState } from "react";
 
 type squareType = string;
 
-type SquareProps = {
-	value: string | null;
-	onSquareClick: () => void;
-};
-
-const Square: React.FC<SquareProps> = ({
-	value,
-	onSquareClick,
-}): React.JSX.Element => {
-	return (
-		<button type="button" className="square" onClick={onSquareClick}>
-			{value}
-		</button>
-	);
-};
-
 type MessageProps = {
 	squares: squareType[];
 	xIsNext: boolean;
@@ -61,29 +45,58 @@ const Board: React.FC<BoardProps> = ({
 		onPlay(newSquares);
 	};
 
+	const points = [0, 3, 6];
+
 	return (
 		<>
 			<Message squares={squares} xIsNext={xIsNext} />
-			<div className="board-row">
-				<Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-				<Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-				<Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-			</div>
-			<div className="board-row">
-				<Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-				<Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-				<Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-			</div>
-			<div className="board-row">
-				<Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-				<Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-				<Square value={squares[8]} onSquareClick={() => handleClick(8)} />
-			</div>
+			{points.map((point) => Row({ point, squares, handleClick }))}
 		</>
 	);
 };
 
-const Game = () => {
+type RowProps = {
+	point: number;
+	squares: squareType[];
+	handleClick: (i: number) => void;
+};
+
+const Row: React.FC<RowProps> = ({
+	point,
+	squares,
+	handleClick,
+}): React.JSX.Element => {
+	const points = [point, point + 1, point + 2];
+	return (
+		<div className="board-row">
+			{points.map((i) => (
+				<Square
+					key={i}
+					value={squares[i]}
+					onSquareClick={() => handleClick(i)}
+				/>
+			))}
+		</div>
+	);
+};
+
+type SquareProps = {
+	value: string | null;
+	onSquareClick: () => void;
+};
+
+const Square: React.FC<SquareProps> = ({
+	value,
+	onSquareClick,
+}): React.JSX.Element => {
+	return (
+		<button type="button" className="square" onClick={onSquareClick}>
+			{value}
+		</button>
+	);
+};
+
+const Game = (): React.JSX.Element => {
 	const [history, setHistory] = useState([Array(9).fill("")]);
 	const [currentMove, setCurrentMove] = useState(0);
 	const xIsNext = currentMove % 2 === 0;
@@ -100,7 +113,16 @@ const Game = () => {
 	};
 
 	const moves = history.map((_, move) => {
-		const description = move ? `Go to move #${move}` : "Go to game start";
+		let description: string;
+		if (currentMove > 0 && move === currentMove) {
+			description = `You are at move #${move}`;
+			return (
+				<li key={move}>
+					<div>{description}</div>
+				</li>
+			);
+		}
+		description = move ? `Go to move #${move}` : "Go to game start";
 		return (
 			<li key={move}>
 				<button type="button" onClick={() => jumpTo(move)}>
