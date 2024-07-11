@@ -117,14 +117,14 @@ const Game = (): React.JSX.Element => {
 		if (currentMove > 0 && move === currentMove) {
 			description = `You are at move #${move}`;
 			return (
-				<li key={move}>
+				<li key={move.toString()}>
 					<div>{description}</div>
 				</li>
 			);
 		}
 		description = move ? `Go to move #${move}` : "Go to game start";
 		return (
-			<li key={move}>
+			<li key={move.toString()}>
 				<button type="button" onClick={() => jumpTo(move)}>
 					{description}
 				</button>
