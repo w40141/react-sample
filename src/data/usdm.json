@@ -1,0 +1,49 @@
+{
+	"project": "プロジェクト名",
+	"requires": [
+		{
+			"id": 1,
+			"label": "ラベル1",
+			"title": "タイトル",
+			"reason": "理由",
+			"description": "詳細",
+			"subRequires": [
+				{
+					"id": 1,
+					"label": "ラベル1",
+					"title": "タイトル",
+					"reason": "理由",
+					"description": "詳細",
+					"specifies": [
+						{
+							"id": 1,
+							"content": "内容"
+						},
+						{
+							"id": 2,
+							"content": "内容"
+						}
+					]
+				},
+				{
+					"id": 2,
+					"label": "ラベル2",
+					"title": "タイトル",
+					"reason": "理由",
+					"description": "詳細",
+					"specifies": []
+				}
+			],
+			"specifies": [
+				{
+					"id": 1,
+					"content": "内容"
+				},
+				{
+					"id": 2,
+					"content": "内容"
+				}
+			]
+		}
+	]
+}

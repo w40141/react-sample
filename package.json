@@ -7,32 +7,38 @@
 		"build": "tsc-b && vite build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
-		"lint": "biome lint --write ./src",
-		"format": "biome format --write ./src",
-		"check": "biome check --write ./src",
+		"lint:fix": "biome lint --write ./src",
+		"format:fix": "biome format --write ./src",
+		"check:fix": "biome check --write ./src",
 		"dev": "vite",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"theme": "yamada-cli tokens ./src/themes/index.ts",
+		"theme:watch": "yamada-cli tokens ./src/themes/index.ts --watch"
 	},
 	"dependencies": {
-		"@chakra-ui/icons": "^2.1.1",
-		"@chakra-ui/react": "^2.8.2",
-		"framer-motion": "^11.3.0",
-		"react": "^18.0.0",
-		"react-dom": "^18.0.0"
+		"@yamada-ui/react": "^1.4.5",
+		"framer-motion": "^11.3.2",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
 		"@types/jest": "^29.5.12",
-		"@types/node": "^20.14.9",
+		"@types/node": "^20.14.10",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
-		"@vitejs/plugin-react-swc": "^3.5.0",
+		"@vitejs/plugin-react-swc": "^3.7.0",
+		"@yamada-ui/cli": "^1.0.5",
 		"typescript": "^5.5.3",
-		"vite": "^5.3.1"
+		"vite": "^5.3.3"
 	},
-	"packageManager": "pnpm@9.5.0-beta.0+sha512.c2e60e7ed04e459591c982f2760cd8f7d1f48fe1ca4d46ccbbf8377df1eb2d077ace1e9d334b06250dddf23c03b4562858f77992b9a3bb4a93355aefd173df32",
+	"packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903",
 	"browserslist": {
-		"production": [">0.2%", "not dead", "not op_mini all"],
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
 		"development": [
 			"last 1 chrome version",
 			"last 1 firefox version",
